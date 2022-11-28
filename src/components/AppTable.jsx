@@ -9,7 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-export const AppTable = ({ data }) => {
+export const AppTable = ({ data, deleteFn, editFn, completeFn }) => {
   return (
     <TableContainer>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -27,13 +27,25 @@ export const AppTable = ({ data }) => {
                   {row.name}
                 </TableCell>
                 <TableCell align="right">
-                  <IconButton aria-label="edit" color="primary">
+                  <IconButton
+                    aria-label="edit"
+                    color="primary"
+                    onClick={editFn}
+                  >
                     <EditIcon />
                   </IconButton>
-                  <IconButton aria-label="delete" color="primary">
+                  <IconButton
+                    aria-label="delete"
+                    color="primary"
+                    onClick={deleteFn}
+                  >
                     <DeleteIcon />
                   </IconButton>
-                  <IconButton aria-label="complete task" color="primary">
+                  <IconButton
+                    aria-label="complete task"
+                    color="primary"
+                    onClick={completeFn}
+                  >
                     <CheckCircleIcon />
                   </IconButton>
                 </TableCell>

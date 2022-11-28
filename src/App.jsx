@@ -1,6 +1,6 @@
-import Box from "@mui/material/Box";
 import { AppTable } from "./components/AppTable";
-import { styled } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Box, styled } from "@mui/material";
 
 const AppBody = styled(Box)`
   height: 100%;
@@ -12,20 +12,38 @@ const AppBody = styled(Box)`
   justify-content: center;
 `;
 
-function createData(name, description) {
+const createItem = (name, description) => {
   return { name, description, completed: false };
-}
+};
 
-const rows = [
-  createData("Clean", "Zajr povysávať"),
-  createData("Upratovanie", "Zajr povysávať"),
-  createData("Cvicit", "Zajr povysávať"),
+const todoList = [
+  createItem("Clean", "Zajr povysávať"),
+  createItem("Upratovanie", "Zajr povysávať"),
+  createItem("Cvicit", "Zajr povysávať"),
 ];
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  const getData = async () => {
+    const promise = new Promise((res, rej) => {
+      setTimeout(() => {
+        if (todoList) {
+          res(todoList);
+        }
+        rej("No data found");
+      }, 2000);
+    });
+    const data = await promise.then((res) => res);
+    setTodos(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <AppBody>
-      <AppTable data={rows} />
+      <AppTable data={todos} />
     </AppBody>
   );
 }
