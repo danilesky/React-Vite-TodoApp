@@ -12,14 +12,14 @@ const AppBody = styled(Box)`
   justify-content: center;
 `;
 
-const createItem = (name, description) => {
-  return { name, description, completed: false };
+const createItem = (id, name, description) => {
+  return { id, name, description, completed: false };
 };
 
 const todoList = [
-  createItem("Clean", "Zajr povysávať"),
-  createItem("Upratovanie", "Zajr povysávať"),
-  createItem("Cvicit", "Zajr povysávať"),
+  createItem(0, "Clean", "Zajr povysávať"),
+  createItem(1, "Upratovanie", "Zajr povysávať"),
+  createItem(2, "Cvicit", "Zajr povysávať"),
 ];
 
 function App() {
@@ -49,8 +49,15 @@ function App() {
     });
   };
 
-  const editTodo = (name) => {
+  const editTodo = (name, id) => {
     console.log(name);
+    console.log(id);
+    const newTodos = todos.map((item) => {
+      if (item.id === id) {
+        item.name = name;
+      }
+      return item;
+    });
   };
 
   return (

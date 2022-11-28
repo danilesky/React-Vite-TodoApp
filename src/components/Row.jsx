@@ -4,19 +4,30 @@ import EditIcon from "@mui/icons-material/Edit";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
+import TextField from "@mui/material/TextField";
+import { useState } from "react";
 
 export const Row = ({ item, editFn, deleteFn, completeFn }) => {
+  const [toggleEdit, setToggleEdit] = useState(false);
+  const editHandler = () => {
+    setToggleEdit(!toggleEdit);
+  };
   return (
     <TableRow key={item.name}>
       <TableCell component="th" scope="row" color="black">
-        {item.name}
+        {!toggleEdit ? (
+          item.name
+        ) : (
+          <TextField
+            id="standard-basic"
+            label={item.name}
+            onChange={(e) => editFn(e.target.value, item.id)}
+            variant="standard"
+          />
+        )}
       </TableCell>
       <TableCell align="right">
-        <IconButton
-          aria-label="edit"
-          color="primary"
-          onClick={() => editFn(item.name)}
-        >
+        <IconButton aria-label="edit" color="primary" onClick={editHandler}>
           <EditIcon />
         </IconButton>
         <IconButton
@@ -26,11 +37,7 @@ export const Row = ({ item, editFn, deleteFn, completeFn }) => {
         >
           <DeleteIcon />
         </IconButton>
-        <IconButton
-          aria-label="complete task"
-          color="primary"
-          onClick={completeFn}
-        >
+        <IconButton aria-label="complete task" color="primary">
           <CheckCircleIcon />
         </IconButton>
       </TableCell>

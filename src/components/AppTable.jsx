@@ -22,7 +22,7 @@ export const AppTable = ({ data, deleteFn, editFn, completeFn }) => {
             {data &&
               data.map((item) => (
                 <Row
-                  key={item.name}
+                  key={item.id}
                   item={item}
                   deleteFn={deleteFn}
                   editFn={editFn}
