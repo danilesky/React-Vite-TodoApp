@@ -39,7 +39,7 @@ export const AppTable = ({ data, deleteFn, editFn, completeFn }) => {
                     <IconButton
                       aria-label="delete"
                       color="primary"
-                      onClick={deleteFn}
+                      onClick={() => deleteFn(row.name)}
                     >
                       <DeleteIcon />
                     </IconButton>

@@ -41,9 +41,17 @@ function App() {
   useEffect(() => {
     getData();
   }, []);
+
+  const deleteTodo = (name) => {
+    console.log(name);
+    setTodos((oldTodos) => {
+      return oldTodos.filter((todo) => todo.name !== name);
+    });
+  };
+
   return (
     <AppBody>
-      <AppTable data={todos} />
+      <AppTable data={todos} deleteFn={deleteTodo} />
     </AppBody>
   );
 }
