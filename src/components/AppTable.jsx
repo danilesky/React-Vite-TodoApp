@@ -4,11 +4,8 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { IconButton, styled } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { LoadingButton } from "@mui/lab";
+import { Row } from "./Row";
 
 export const AppTable = ({ data, deleteFn, editFn, completeFn }) => {
   return (
@@ -23,35 +20,14 @@ export const AppTable = ({ data, deleteFn, editFn, completeFn }) => {
           </TableHead>
           <TableBody>
             {data &&
-              data.map((row) => (
-                <TableRow key={row.name}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="right">
-                    <IconButton
-                      aria-label="edit"
-                      color="primary"
-                      onClick={editFn}
-                    >
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton
-                      aria-label="delete"
-                      color="primary"
-                      onClick={() => deleteFn(row.name)}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                    <IconButton
-                      aria-label="complete task"
-                      color="primary"
-                      onClick={completeFn}
-                    >
-                      <CheckCircleIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
+              data.map((item) => (
+                <Row
+                  key={item.name}
+                  item={item}
+                  deleteFn={deleteFn}
+                  editFn={editFn}
+                  completeFn={completeFn}
+                />
               ))}
           </TableBody>
         </Table>

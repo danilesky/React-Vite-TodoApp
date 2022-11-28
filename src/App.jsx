@@ -49,9 +49,13 @@ function App() {
     });
   };
 
+  const editTodo = (name) => {
+    console.log(name);
+  };
+
   return (
     <AppBody>
-      <AppTable data={todos} deleteFn={deleteTodo} />
+      <AppTable data={todos} deleteFn={deleteTodo} editFn={editTodo} />
     </AppBody>
   );
 }
