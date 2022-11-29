@@ -70,13 +70,30 @@ function App() {
       };
       return [...oldTodos, newTodo];
     });
-    console.log(todos);
+  };
+
+  const completeTodo = (id) => {
+    console.log(id);
+    setTodos((oldTodos) => {
+      const newTodos = oldTodos.map((item) => {
+        if (item.id === id) {
+          item.completed = true;
+        }
+        return item;
+      });
+      return newTodos;
+    });
   };
 
   return (
     <AppBody>
       <AddTask addFn={addTodo} />
-      <AppTable data={todos} deleteFn={deleteTodo} editFn={editTodo} />
+      <AppTable
+        data={todos}
+        deleteFn={deleteTodo}
+        editFn={editTodo}
+        completeFn={completeTodo}
+      />
     </AppBody>
   );
 }

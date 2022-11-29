@@ -15,7 +15,6 @@ export const AddTask = ({ addFn }) => {
       e.target.value = "";
       setName(null);
     }
-    console.log(name);
   };
 
   return (

@@ -6,10 +6,20 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import { styled } from "@mui/system";
+
+const StyledRow = styled(TableRow)`
+  transition: 0.3s ease;
+  &.completed {
+    background: green;
+    transition: 0.3s ease;
+  }
+`;
 
 export const Row = ({ item, editFn, deleteFn, completeFn }) => {
   const [toggleEdit, setToggleEdit] = useState(false);
   const [name, setName] = useState(item.name);
+  const [completed, setCompleted] = useState(false);
 
   const nameHandler = (name) => {
     setName(name);
@@ -24,8 +34,14 @@ export const Row = ({ item, editFn, deleteFn, completeFn }) => {
       editFn(name, item.id);
     }
   };
+  const completeHandler = () => {
+    setCompleted(!completed);
+    setTimeout(() => {
+      completeFn(item.id);
+    }, 350);
+  };
   return (
-    <TableRow key={item.name}>
+    <StyledRow className={completed ? "completed" : ""} key={item.name}>
       <TableCell component="th" scope="row" color="black">
         {!toggleEdit ? (
           name
@@ -50,10 +66,14 @@ export const Row = ({ item, editFn, deleteFn, completeFn }) => {
         >
           <DeleteIcon />
         </IconButton>
-        <IconButton aria-label="complete task" color="primary">
+        <IconButton
+          aria-label="complete task"
+          color="primary"
+          onClick={completeHandler}
+        >
           <CheckCircleIcon />
         </IconButton>
       </TableCell>
-    </TableRow>
+    </StyledRow>
   );
 };

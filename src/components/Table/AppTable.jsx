@@ -8,6 +8,7 @@ import { LoadingButton } from "@mui/lab";
 import { Row } from "./Row";
 
 export const AppTable = ({ data, deleteFn, editFn, completeFn }) => {
+  const unCompletedTodos = data.filter((item) => !item.completed);
   return (
     <>
       <TableContainer>
@@ -19,8 +20,8 @@ export const AppTable = ({ data, deleteFn, editFn, completeFn }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data &&
-              data.map((item) => (
+            {unCompletedTodos &&
+              unCompletedTodos.map((item) => (
                 <Row
                   key={item.id}
                   item={item}
