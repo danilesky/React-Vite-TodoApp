@@ -50,13 +50,13 @@ function App() {
   };
 
   const editTodo = (name, id) => {
-    console.log(name);
-    console.log(id);
-    const newTodos = todos.map((item) => {
-      if (item.id === id) {
-        item.name = name;
-      }
-      return item;
+    setTodos((newTodos) => {
+      return newTodos.map((item) => {
+        if (item.id === id) {
+          item.name = name;
+        }
+        return item;
+      });
     });
   };
 

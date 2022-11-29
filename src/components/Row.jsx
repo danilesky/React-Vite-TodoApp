@@ -9,25 +9,38 @@ import { useState } from "react";
 
 export const Row = ({ item, editFn, deleteFn, completeFn }) => {
   const [toggleEdit, setToggleEdit] = useState(false);
-  const editHandler = () => {
+  const [name, setName] = useState(item.name);
+
+  const nameHandler = (name) => {
+    setName(name);
+  };
+  const toggleHandler = (e) => {
     setToggleEdit(!toggleEdit);
+  };
+  const editHandler = (e) => {
+    //On enter
+    if (e.code === "Enter") {
+      setToggleEdit(!toggleEdit);
+      editFn(name, item.id);
+    }
   };
   return (
     <TableRow key={item.name}>
       <TableCell component="th" scope="row" color="black">
         {!toggleEdit ? (
-          item.name
+          name
         ) : (
           <TextField
             id="standard-basic"
-            label={item.name}
-            onChange={(e) => editFn(e.target.value, item.id)}
+            label={name}
+            onChange={(e) => nameHandler(e.target.value)}
+            onKeyDown={(e) => editHandler(e)}
             variant="standard"
           />
         )}
       </TableCell>
       <TableCell align="right">
-        <IconButton aria-label="edit" color="primary" onClick={editHandler}>
+        <IconButton aria-label="edit" color="primary" onClick={toggleHandler}>
           <EditIcon />
         </IconButton>
         <IconButton
