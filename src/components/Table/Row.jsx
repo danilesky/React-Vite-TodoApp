@@ -46,7 +46,7 @@ export const Row = ({ item, editFn, deleteFn, completeFn }) => {
         <IconButton
           aria-label="delete"
           color="primary"
-          onClick={() => deleteFn(item.name)}
+          onClick={() => deleteFn(item.id)}
         >
           <DeleteIcon />
         </IconButton>

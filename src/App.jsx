@@ -43,10 +43,9 @@ function App() {
     getData();
   }, []);
 
-  const deleteTodo = (name) => {
-    console.log(name);
+  const deleteTodo = (id) => {
     setTodos((oldTodos) => {
-      return oldTodos.filter((todo) => todo.name !== name);
+      return oldTodos.filter((todo) => todo.id !== id);
     });
   };
 
