@@ -1,4 +1,4 @@
-import { AppTable } from "./components/AppTable";
+import { AppTable } from "./components/Table/AppTable";
 import { useEffect, useState } from "react";
 import { Box, styled } from "@mui/material";
 
