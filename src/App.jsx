@@ -1,13 +1,14 @@
 import { AppTable } from "./components/Table/AppTable";
 import { useEffect, useState } from "react";
 import { Box, styled } from "@mui/material";
+import { AddTask } from "./components/AddTask";
 
 const AppBody = styled(Box)`
   height: 100%;
   width: 100%;
   background-color: white;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
@@ -60,8 +61,21 @@ function App() {
     });
   };
 
+  const addTodo = (name) => {
+    setTodos((oldTodos) => {
+      const lastIndex = oldTodos.length ? oldTodos[oldTodos.length - 1] : 0;
+      const newTodo = {
+        id: lastIndex + 1,
+        name: name,
+        description: "",
+      };
+      return [...oldTodos, newTodo];
+    });
+  };
+
   return (
     <AppBody>
+      <AddTask addFn={addTodo} />
       <AppTable data={todos} deleteFn={deleteTodo} editFn={editTodo} />
     </AppBody>
   );
