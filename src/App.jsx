@@ -62,7 +62,7 @@ function App() {
 
   const addTodo = (name) => {
     setTodos((oldTodos) => {
-      const lastIndex = oldTodos.length ? oldTodos[oldTodos.length - 1] : 0;
+      const lastIndex = oldTodos.length ? oldTodos[oldTodos.length - 1].id : 0;
       const newTodo = {
         id: lastIndex + 1,
         name: name,
@@ -70,6 +70,7 @@ function App() {
       };
       return [...oldTodos, newTodo];
     });
+    console.log(todos);
   };
 
   return (
